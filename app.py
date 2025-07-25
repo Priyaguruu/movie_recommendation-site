@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import requests
 from algorithm import recommend_movies
-
+import os
 
 app = Flask(__name__)
 
@@ -70,6 +70,6 @@ def recommend():
     recommendations = recommend_movies(title, language)
     return render_template('result.html', title=title, recommendations=recommendations)
 
+if __name__ == "__main__":
+    app.run(debug=False, host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
 
-if __name__ == '__main__':
-    app.run(debug=True)
