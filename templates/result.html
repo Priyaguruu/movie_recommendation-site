@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RecMovies4U</title>
+    <style>
+        body {
+            margin: 0;
+            padding:0;
+            font-family: Arial, sans-serif;
+            background: url("/static/bg.jpg") no-repeat center center fixed;
+            background-size: cover;
+            background-position:center;
+            color: white;
+            height:100vh;
+            overflow:hidden;
+        }
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for text contrast */
+            min-height: 100vh;
+            padding: 50px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .movie-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            flex-wrap:nowrap;
+        }
+        .movie-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            width: 220px;
+            font-size:18px;
+            font-weight:bold;
+            transition: transform 0.3s ease;
+        }
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+        .movie-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .back-button {
+          display: inline-block;
+          padding: 12px 25px;
+          background-color: #ffffff22;
+          color: #fff;
+          text-decoration: none;
+          font-weight: bold;
+          border-radius: 8px;
+          transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+           background-color: #ffffff44;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <h1>Top Picks For You</h1>
+
+        <div class="movie-list">
+            {% for movie in recommendations[:5] %}
+                <div class="movie-card">{{ movie }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Go Back Button centered -->
+        <div style="margin-top: 40px; text-align: center;">
+            <a href="{{ url_for('home') }}" class="back-button">← Go Back</a>
+        </div>
+    </div>
+</body>
+</html>
